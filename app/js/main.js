@@ -101,19 +101,15 @@ function plotHsaGrps(podDat) {
     /* select the correct svg for each hsagrp */
     let svg = d3.select('svg.' + d.value[0].hsagrp)
 
-    /* set lines group */
-    let lines = svg
+    /* draw lines */
+    svg
       .selectAll('path')
       /* no square brackets needed here! */
       .data(sex)
       .enter()
-      .append('g')
+      .append('path')
       .attr('class', 'line')
       .attr('id', 'urt-line')
-
-    /* draw lines */
-    lines
-      .append('path')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
       /* d3.line() only accepts arrays, d.values is an iterator, [1] references values ([0] is the key) */
       .attr('d', (d) => urtLine(Array.from(d.values())[1]))
