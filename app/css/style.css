@@ -1,0 +1,74 @@
+#panels.div-panels {
+  height: 100%;
+  width: 900px;
+}
+
+#selectors.div-selectors {
+  margin-bottom: 13px;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 13px;
+  fill: #2c2825;
+}
+
+.selector {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 13px;
+  fill: #2c2825;
+}
+
+.title {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 16px;
+  fill: #2c2825;
+  font-weight: bold;
+}
+
+#y-axis path {
+  stroke: none;
+}
+
+.key-labels {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 13px;
+}
+
+.axis-label {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 13px;
+  fill: #686f73;
+}
+
+.tick:first-of-type line {
+  color: #686f73;
+}
+
+.tick:not(:first-of-type) line {
+  color: #c2c5c7;
+}
+
+.tick text {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 13px;
+  fill: #686f73;
+}
+
+svg.amb,
+svg.walkin,
+svg.daycase_n,
+svg.emer_n,
+svg.emer_bds,
+svg.ordelec_n,
+svg.ordelec_bds,
+svg.surg_first,
+svg.surg_fup,
+svg.surg_proc,
+svg.non-surg_first,
+svg.non-surg_fup,
+svg.non-surg_proc {
+  background-color: #f2f2f2;
+  border: 1px solid #686f73;
+  margin: 2px;
+}

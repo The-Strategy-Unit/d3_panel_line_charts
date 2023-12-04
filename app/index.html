@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Fira+Sans:wght@400;700&display=swap"
+    />
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- div to hold selector dropdowns -->
+    <div class="div-selectors" id="selectors">
+      <p>Choose an area</p>
+      <!-- initialise a dropdown -->
+      <select class="selector" id="selectArea">
+        <option value="E08000026" selected>Coventry</option>
+        <option value="E07000235">Malvern Hills</option>
+        <option value="E09000030">Tower Hamlets</option>
+      </select>
+      <p>Choose a service type</p>
+      <!-- initialise a dropdown -->
+      <select class="selector" id="selectPod">
+        <option value="aae" selected>aae</option>
+        <option value="apc">apc</option>
+        <option value="opc">opc</option>
+      </select>
+    </div>
+    <!-- div to hold small multiple plots -->
+    <div class="div-panels" id="panels"></div>
+    <!-- JS -->
+    <script src="./js/index.js" type="module"></script>
+  </body>
+</html>
