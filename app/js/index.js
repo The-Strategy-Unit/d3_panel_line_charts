@@ -37,12 +37,14 @@ plotHsaGrps(podDat)
 d3.select('#selectArea').on('change', function () {
   let selectedArea = d3.select(this).property('value')
   let selectedPod = d3.select('#selectPod').property('value')
+  d3.select('#toggleHsa').property('checked', false)
   switchArea(selectedArea, selectedPod)
 })
 
 /* when the pod dropdown changes, run switchPod() with the new value */
 d3.select('#selectPod').on('change', function () {
   let selectedPod = d3.select(this).property('value')
+  d3.select('#toggleHsa').property('checked', false)
   switchPod(grpDat, selectedPod)
 })
 
