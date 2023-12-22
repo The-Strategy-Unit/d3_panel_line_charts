@@ -22,35 +22,32 @@ import { switchArea } from './main.js'
 import { toggleSmooth } from './main.js'
 import { toggleLine } from './main.js'
 
-const selectedArea = 'E08000026'
-const selectedPod = 'aae'
+let selectedArea = 'E08000026'
+let selectedPod = 'aae'
 
 const data = await d3.csv(blobDir + filePrefix + selectedArea + fileExt)
-
 const grpDat = d3.group(data, (d) => d.pod)
-
 const podDat = grpDat.get(selectedPod)
 
 plotHsaGrps(podDat)
 
 /* when the area dropdown changes, run switchArea() with the new value */
 d3.select('#selectArea').on('change', function () {
-  let selectedArea = d3.select(this).property('value')
-  let selectedPod = d3.select('#selectPod').property('value')
+  selectedArea = d3.select(this).property('value')
   d3.select('#toggleHsa').property('checked', false)
   switchArea(selectedArea, selectedPod)
 })
 
 /* when the pod dropdown changes, run switchPod() with the new value */
 d3.select('#selectPod').on('change', function () {
-  let selectedPod = d3.select(this).property('value')
+  selectedPod = d3.select(this).property('value')
   d3.select('#toggleHsa').property('checked', false)
-  switchPod(grpDat, selectedPod)
+  switchPod(selectedArea, selectedPod)
 })
 
 /* when the smooth relationship toggle changes, run toggleSmooth() or toggleLine() */
 d3.select('#toggleHsa').on('change', function () {
-  let selectedPod = d3.select('#selectPod').property('value')
+  selectedPod = d3.select('#selectPod').property('value')
   if (d3.select('#toggleHsa').property('checked')) {
     toggleSmooth(selectedArea, selectedPod)
   } else {

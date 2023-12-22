@@ -250,29 +250,38 @@ function updatePlots(podDat) {
 }
 
 /* fn: switch the plots when pod changes */
-function switchPod(grpDat, selectedPod) {
-  /* get the new data */
-  let podDat = grpDat.get(selectedPod)
+function switchPod(selectedArea, selectedPod) {
+  const url = blobDir + filePrefix + selectedArea + fileExt
+  d3.csv(url)
+    .then(function (data) {
+      const grpDat = d3.group(data, (d) => d.pod)
+      const podDat = grpDat.get(selectedPod)
 
-  /* remove plots */
-  d3.select('#panels').selectAll('svg').remove()
+      /* remove plots */
+      d3.select('#panels').selectAll('svg').remove()
 
-  plotHsaGrps(podDat)
+      plotHsaGrps(podDat)
+    })
+    .catch(function (error) {
+      alert(error.message)
+      console.log(error.message)
+    })
 }
 
 /* fn: update the plots when the area dropdown changes */
 function switchArea(selectedArea, selectedPod) {
-  /* get name of csv file from area dropdown */
-  let url = blobDir + filePrefix + selectedArea + fileExt
-  d3.csv(url).then(function (data) {
-    /* group the new data */
-    let grpDat = d3.group(data, (d) => d.pod)
+  const url = blobDir + filePrefix + selectedArea + fileExt
+  d3.csv(url)
+    .then(function (data) {
+      const grpDat = d3.group(data, (d) => d.pod)
+      const podDat = grpDat.get(selectedPod)
 
-    /* get the new data */
-    let podDat = grpDat.get(selectedPod)
-
-    updatePlots(podDat)
-  })
+      updatePlots(podDat)
+    })
+    .catch(function (error) {
+      alert(error.message)
+      console.log(error.message)
+    })
 }
 
 /* fn: transition to smoothed path */
