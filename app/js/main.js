@@ -8,8 +8,8 @@ const height = 400 - margin.top - margin.bottom
 const width = 400 - margin.left - margin.right
 
 /* set file path */
-const blobDir =
-  'https://strategyunit.blob.core.windows.net/population-aging-app/'
+const blobDir = 'https://strategyunit.blob.core.windows.net/population-aging-app/'
+// const blobDir = './data/'
 const filePrefix = 'test_activity_'
 const fileExt = '.csv'
 
