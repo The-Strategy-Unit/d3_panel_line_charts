@@ -45,6 +45,16 @@ const urtLine = d3
     return yScale(d.urt)
   })
 
+/* smoothed line generator */
+const urtSmooth = d3
+  .line()
+  .x(function (d) {
+    return xScale(d.age)
+  })
+  .y(function (d) {
+    return yScale(d.gam_rt)
+  })
+
 /* fn: custom style for y-axis */
 function styleYaxis(g) {
   g.call((g) =>
@@ -265,6 +275,78 @@ function switchArea(selectedArea, selectedPod) {
   })
 }
 
+/* fn: transition to smoothed path */
+function transitionSmooth() {
+  d3.select(this)
+    .transition()
+    .duration(transDur)
+    .attr('d', (d) => urtSmooth(Array.from(d.values())[1]))
+}
+
+/* fn: update the plots when the smooth relationship toggle changes */
+function toggleSmooth(selectedArea, selectedPod) {
+  const url = blobDir + filePrefix + selectedArea + fileExt
+  d3.csv(url)
+    .then(function (data) {
+      const grpDat = d3.group(data, (d) => d.pod)
+      const podDat = grpDat.get(selectedPod)
+
+      const hsaGrps = Array.from(
+        d3.group(podDat, (d) => d.hsagrp),
+        ([key, value]) => ({ key, value })
+      )
+
+      hsaGrps.forEach(function (d) {
+        const maxUrt = d3.max(d.value.map((d) => d.urt))
+        yScale.domain([0, maxUrt])
+
+        const svg = d3.select('svg.' + d.value[0].hsagrp)
+
+        svg.selectAll('#urt-line').each(transitionSmooth)
+      })
+    })
+    .catch(function (error) {
+      alert(error.message)
+      console.log(error.message)
+    })
+}
+
+/* fn: transition to line path */
+function transitionLine() {
+  d3.select(this)
+    .transition()
+    .duration(transDur)
+    .attr('d', (d) => urtLine(Array.from(d.values())[1]))
+}
+
+/* fn: update the plots when the smooth relationship toggle changes */
+function toggleLine(selectedArea, selectedPod) {
+  const url = blobDir + filePrefix + selectedArea + fileExt
+  d3.csv(url)
+    .then(function (data) {
+      const grpDat = d3.group(data, (d) => d.pod)
+      const podDat = grpDat.get(selectedPod)
+
+      const hsaGrps = Array.from(
+        d3.group(podDat, (d) => d.hsagrp),
+        ([key, value]) => ({ key, value })
+      )
+
+      hsaGrps.forEach(function (d) {
+        const maxUrt = d3.max(d.value.map((d) => d.urt))
+        yScale.domain([0, maxUrt])
+
+        const svg = d3.select('svg.' + d.value[0].hsagrp)
+
+        svg.selectAll('#urt-line').each(transitionLine)
+      })
+    })
+    .catch(function (error) {
+      alert(error.message)
+      console.log(error.message)
+    })
+}
+
 /* export variables */
 export {
   plotTitleSpacer,
@@ -279,10 +361,12 @@ export {
 }
 /* export d3 functions */
 export { d3 }
-export { xScale, xAxis, yScale, colorPal, urtLine }
+export { xScale, xAxis, yScale, colorPal, urtLine, urtSmooth }
 /* export udf functions */
 export { styleYaxis, formatYaxis }
 export { plotHsaGrps }
 export { updatePlots }
 export { switchPod }
 export { switchArea }
+export { toggleSmooth }
+export { toggleLine }

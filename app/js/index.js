@@ -19,6 +19,8 @@ import { plotHsaGrps } from './main.js'
 import { updatePlots } from './main.js'
 import { switchPod } from './main.js'
 import { switchArea } from './main.js'
+import { toggleSmooth } from './main.js'
+import { toggleLine } from './main.js'
 
 const selectedArea = 'E08000026'
 const selectedPod = 'aae'
@@ -42,4 +44,14 @@ d3.select('#selectArea').on('change', function () {
 d3.select('#selectPod').on('change', function () {
   let selectedPod = d3.select(this).property('value')
   switchPod(grpDat, selectedPod)
+})
+
+/* when the smooth relationship toggle changes, run toggleSmooth() or toggleLine() */
+d3.select('#toggleHsa').on('change', function () {
+  let selectedPod = d3.select('#selectPod').property('value')
+  if (d3.select('#toggleHsa').property('checked')) {
+    toggleSmooth(selectedArea, selectedPod)
+  } else {
+    toggleLine(selectedArea, selectedPod)
+  }
 })
