@@ -73,7 +73,7 @@ function formatYaxis(d) {
 /* fn: plot panel of line plots for hsagrps in a pod */
 function plotHsaGrps(podDat) {
   /* data to plot */
-  let hsaGrps = Array.from(
+  const hsaGrps = Array.from(
     d3.group(podDat, (d) => d.hsagrp),
     ([key, value]) => ({ key, value })
   )
@@ -94,11 +94,11 @@ function plotHsaGrps(podDat) {
   /* iterate over data array and create plot elements (x-axis, y-axis, and lines) */
   hsaGrps.forEach(function (d) {
     /* set yScale domain based on range of urt values in each hsagrp */
-    let maxUrt = d3.max(d.value.map((d) => d.urt))
+    const maxUrt = d3.max(d.value.map((d) => d.urt))
     yScale.domain([0, maxUrt])
 
     /* y-axis changes based on range of urt values */
-    let yAxis = d3
+    const yAxis = d3
       .axisLeft()
       .scale(yScale)
       .ticks(5)
@@ -106,10 +106,10 @@ function plotHsaGrps(podDat) {
       .tickFormat(formatYaxis)
 
     /* data to plot 2 lines f/m */
-    let sex = d3.group(d.value, (d) => d.sex)
+    const sex = d3.group(d.value, (d) => d.sex)
 
     /* select the correct svg for each hsagrp */
-    let svg = d3.select('svg.' + d.value[0].hsagrp)
+    const svg = d3.select('svg.' + d.value[0].hsagrp)
 
     /* draw lines */
     svg
@@ -178,7 +178,7 @@ function plotHsaGrps(podDat) {
       .style('text-anchor', 'left')
 
     /* set key labels group */
-    let keyLabelsGrp = svg
+    const keyLabelsGrp = svg
       .selectAll('g.keyLab')
       .data(keyLabels)
       .enter()
@@ -203,7 +203,7 @@ function plotHsaGrps(podDat) {
 /* fn: update the plots when the data (area) changes */
 function updatePlots(podDat) {
   /* data to plot */
-  let hsaGrps = Array.from(
+  const hsaGrps = Array.from(
     d3.group(podDat, (d) => d.hsagrp),
     ([key, value]) => ({ key, value })
   )
@@ -211,11 +211,11 @@ function updatePlots(podDat) {
   /* iterate over data array and create plot elements (x-axis, y-axis, and lines) */
   hsaGrps.forEach(function (d) {
     /* set yScale domain based on range of urt values in each hsagrp */
-    let maxUrt = d3.max(d.value.map((d) => d.urt))
+    const maxUrt = d3.max(d.value.map((d) => d.urt))
     yScale.domain([0, maxUrt])
 
     /* y-axis changes based on range of urt values */
-    let yAxis = d3
+    const yAxis = d3
       .axisLeft()
       .scale(yScale)
       .ticks(5)
@@ -223,10 +223,10 @@ function updatePlots(podDat) {
       .tickFormat(formatYaxis)
 
     /* data to plot 2 lines f/m */
-    let sex = d3.group(d.value, (d) => d.sex)
+    const sex = d3.group(d.value, (d) => d.sex)
 
     /* select the correct svg for each hsagrp and update lines */
-    let svg = d3.select('svg.' + d.value[0].hsagrp)
+    const svg = d3.select('svg.' + d.value[0].hsagrp)
 
     /* transition lines */
     svg
