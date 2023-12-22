@@ -358,23 +358,14 @@ function toggleLine(selectedArea, selectedPod) {
 
 /* export variables */
 export {
-  plotTitleSpacer,
-  margin,
-  width,
-  height,
   blobDir,
   filePrefix,
-  fileExt,
-  keyLabels,
-  transDur
+  fileExt
 }
 /* export d3 functions */
 export { d3 }
-export { xScale, xAxis, yScale, colorPal, urtLine, urtSmooth }
 /* export udf functions */
-export { styleYaxis, formatYaxis }
 export { plotHsaGrps }
-export { updatePlots }
 export { switchPod }
 export { switchArea }
 export { toggleSmooth }
