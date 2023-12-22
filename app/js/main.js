@@ -8,7 +8,8 @@ const height = 400 - margin.top - margin.bottom
 const width = 400 - margin.left - margin.right
 
 /* set file path */
-const blobDir = 'https://strategyunit.blob.core.windows.net/population-aging-app/'
+const blobDir =
+  'https://strategyunit.blob.core.windows.net/population-aging-app/'
 // const blobDir = './data/'
 const filePrefix = 'test_activity_'
 const fileExt = '.csv'
@@ -357,11 +358,7 @@ function toggleLine(selectedArea, selectedPod) {
 }
 
 /* export variables */
-export {
-  blobDir,
-  filePrefix,
-  fileExt
-}
+export { blobDir, filePrefix, fileExt }
 /* export d3 functions */
 export { d3 }
 /* export udf functions */

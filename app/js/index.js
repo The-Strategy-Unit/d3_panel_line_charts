@@ -1,9 +1,5 @@
 /* import variables */
-import {
-  blobDir,
-  filePrefix,
-  fileExt
-} from './main.js'
+import { blobDir, filePrefix, fileExt } from './main.js'
 /* import d3 functions */
 import { d3 } from './main.js'
 /* import udf functions */
