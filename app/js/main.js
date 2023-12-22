@@ -16,7 +16,7 @@ const fileExt = '.csv'
 /* set key labels */
 const keyLabels = ['Women|', 'Men']
 
-/* set transition duration for updatePlots fn */
+/* set transition duration for transitions */
 const transDur = 1800
 
 /* define axes (x-axis does not change) */
@@ -149,7 +149,7 @@ function plotHsaGrps(podDat) {
       .call(yAxis)
       .call(styleYaxis)
 
-    /* add x-axis label  */
+    /* add x-axis label */
     svg
       .append('text')
       .attr('class', 'axis-label')
@@ -160,7 +160,7 @@ function plotHsaGrps(podDat) {
       .text('Age')
       .style('text-anchor', 'middle')
 
-    /* add y-axis label (easy as i don't want to rotate it, rotating changes the position of the origin */
+    /* add y-axis label (easy as i don't want to rotate it, rotating changes the position of the origin) */
     svg
       .append('text')
       .attr('class', 'axis-label')
